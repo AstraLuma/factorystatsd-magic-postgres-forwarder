@@ -40,7 +40,7 @@ def read_factorio(script_output: Path) -> Iterable[tuple[str, dict]]:
             else:
                 if meta_mod_time > last_meta_mod_time:
                     LOG.info('loading game data')
-                    yield 'meta', json.load(meta_path.read_text())
+                    yield 'meta', json.loads(meta_path.read_text())
                     last_meta_mod_time = meta_mod_time
 
             try:
