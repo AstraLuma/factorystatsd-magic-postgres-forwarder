@@ -1,0 +1,41 @@
+version: "3.9"
+   
+services:
+  db:
+    image: docker.io/library/postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=factorio
+      - POSTGRES_USER=factory
+      - POSTGRES_PASSWORD=thesciencemustflow
+    expose:
+      - 5432
+
+  adminer:
+    image: docker.io/library/adminer
+    ports:
+      - 8080:8080
+
+  forwarder:
+    build: .
+    volumes:
+      - scripts:/var/run/script-output
+    environment:
+      - DATABASE_URL=postgresql://factory:thesciencemustflow@db/factorio?target_session_attrs=any&application_name=forwarder
+      - SCRIPT_OUTPUT=/var/run/script-output
+    depends_on:
+      - db
+
+  factory:
+    build:
+      context: .
+      dockerfile: mockfactory.Dockerfile
+    volumes:
+      - scripts:/var/run/script-output
+    environment:
+      - SCRIPT_OUTPUT=/var/run/script-output
+
+volumes:
+  db:
+  scripts:

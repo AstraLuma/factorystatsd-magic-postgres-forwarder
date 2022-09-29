@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pg_magic"
+version = "0.1.0"
+description = "Magical PG factorystatsd forwarder"
+authors = ["Jamie Bliss <jamie@ivyleav.es>"]
+license = "FAFOL"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+psycopg = {extras = ["binary"], version = "^3.1.1"}
+click = "^8.1.3"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+pg_magic_forwarder = 'pg_magic:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

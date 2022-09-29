@@ -1,0 +1,1031 @@
+{
+    "ticks": 210795932,
+    "entities": [
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179354954,
+            "green_signals": [
+                {
+                    "count": 102400,
+                    "signal": {
+                        "type": "item",
+                        "name": "uranium-rounds-magazine"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179354873,
+            "green_signals": [
+                {
+                    "count": 25600,
+                    "signal": {
+                        "type": "item",
+                        "name": "coal"
+                    }
+                },
+                {
+                    "count": 6105,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-meteor-defence-ammo"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179352334,
+            "green_signals": [
+                {
+                    "count": 512,
+                    "signal": {
+                        "type": "item",
+                        "name": "nuclear-fuel"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=ion",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179404563,
+            "green_signals": [
+                {
+                    "count": 74998,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-ion-stream"
+                    }
+                },
+                {
+                    "count": 25600,
+                    "signal": {
+                        "type": "item",
+                        "name": "copper-plate"
+                    }
+                },
+                {
+                    "count": 12800,
+                    "signal": {
+                        "type": "item",
+                        "name": "stone"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=ion",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179406387,
+            "green_signals": [
+                {
+                    "count": 199994,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-plasma-stream"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=ion",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179407205,
+            "green_signals": [
+                {
+                    "count": 399998,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-chemical-gel"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "astermore orbit"
+            },
+            "surface_index": 2,
+            "unit_number": 179406764,
+            "green_signals": [
+                {
+                    "count": 10240,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-meteor-defence-ammo"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "mara"
+            },
+            "surface_index": 4,
+            "unit_number": 181332502,
+            "red_signals": [
+                {
+                    "count": 2062,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon"
+                    }
+                },
+                {
+                    "count": 1023,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon-orbit"
+                    }
+                },
+                {
+                    "count": 15873,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=magnetic canisters",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179614967,
+            "green_signals": [
+                {
+                    "count": 25600,
+                    "signal": {
+                        "type": "item",
+                        "name": "plastic-bar"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=star probe data",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179603575,
+            "green_signals": [
+                {
+                    "count": 256,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-probe-rocket"
+                    }
+                },
+                {
+                    "count": 10588,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-star-probe-data"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=magnetic canisters",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179602523
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=star probe data",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179603530,
+            "green_signals": [
+                {
+                    "count": 951,
+                    "signal": {
+                        "type": "item",
+                        "name": "rocket-fuel"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=star probe data",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179599042,
+            "red_signals": [
+                {
+                    "count": 5120,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-solar-panel-2"
+                    }
+                },
+                {
+                    "count": 2560,
+                    "signal": {
+                        "type": "item",
+                        "name": "rocket-control-unit"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=magnetic canisters",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179600354,
+            "green_signals": [
+                {
+                    "count": 25600,
+                    "signal": {
+                        "type": "item",
+                        "name": "steel-plate"
+                    }
+                },
+                {
+                    "count": 12800,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-superconductive-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=magnetic canisters",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179600437,
+            "green_signals": [
+                {
+                    "count": 25600,
+                    "signal": {
+                        "type": "item",
+                        "name": "copper-plate"
+                    }
+                },
+                {
+                    "count": 51200,
+                    "signal": {
+                        "type": "item",
+                        "name": "battery"
+                    }
+                },
+                {
+                    "count": 997,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-magnetic-canister"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179280103,
+            "green_signals": [
+                {
+                    "count": 149991,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "water"
+                    }
+                },
+                {
+                    "count": 51200,
+                    "signal": {
+                        "type": "item",
+                        "name": "coal"
+                    }
+                },
+                {
+                    "count": 512,
+                    "signal": {
+                        "type": "item",
+                        "name": "nuclear-fuel"
+                    }
+                },
+                {
+                    "count": 10240,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-meteor-defence-ammo"
+                    }
+                }
+            ],
+            "red_signals": [
+                {
+                    "count": 399992,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "steam"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=star probe data",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179599501,
+            "green_signals": [
+                {
+                    "count": 12800,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-holmium-solenoid"
+                    }
+                },
+                {
+                    "count": 1037,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-empty-data"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=colony",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179279676,
+            "green_signals": [
+                {
+                    "count": 399990,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "steam"
+                    }
+                },
+                {
+                    "count": 100817,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-water-ice"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179259157,
+            "green_signals": [
+                {
+                    "count": 124995,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-warm"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=fluids",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179259009,
+            "green_signals": [
+                {
+                    "count": 399991,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-water"
+                    }
+                },
+                {
+                    "count": 24999,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "water"
+                    }
+                },
+                {
+                    "count": 399991,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "lubricant"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=fluids",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179504812,
+            "green_signals": [
+                {
+                    "count": 399999,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "heavy-oil"
+                    }
+                },
+                {
+                    "count": 399997,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "sulfuric-acid"
+                    }
+                }
+            ],
+            "red_signals": [
+                {
+                    "count": 181791,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-water"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179258931,
+            "green_signals": [
+                {
+                    "count": 166425,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-hot"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179259501,
+            "green_signals": [
+                {
+                    "count": 99996,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-supercooled"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179258668,
+            "green_signals": [
+                {
+                    "count": 399995,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-chemical-gel"
+                    }
+                },
+                {
+                    "count": 8574,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-cryonite-slush"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=magnetic canisters",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179516565,
+            "green_signals": [
+                {
+                    "count": 12800,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-superconductive-cable"
+                    }
+                },
+                {
+                    "count": 12800,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-holmium-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179259723
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179258605,
+            "green_signals": [
+                {
+                    "count": 44482,
+                    "signal": {
+                        "type": "item",
+                        "name": "sand"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179259905
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=fluids",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179509088,
+            "red_signals": [
+                {
+                    "count": 249593,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-hot"
+                    }
+                },
+                {
+                    "count": 10018,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-warm"
+                    }
+                },
+                {
+                    "count": 24999,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-space-coolant-supercooled"
+                    }
+                },
+                {
+                    "count": 400000,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "petroleum-gas"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179258577,
+            "green_signals": [
+                {
+                    "count": 2560,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-material-testing-pack"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=fluids",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179513528,
+            "red_signals": [
+                {
+                    "count": 399989,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-chemical-gel"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=production,factory=antimatter",
+                "absent_signals": "ignore",
+                "name": "calidus orbit"
+            },
+            "surface_index": 5,
+            "unit_number": 179258666,
+            "green_signals": [
+                {
+                    "count": 199988,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-antimatter-stream"
+                    }
+                },
+                {
+                    "count": 37554,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-magnetic-canister"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "magaera"
+            },
+            "surface_index": 21,
+            "unit_number": 179194437,
+            "red_signals": [
+                {
+                    "count": 1863,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon"
+                    }
+                },
+                {
+                    "count": 1271,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon-orbit"
+                    }
+                },
+                {
+                    "count": 34298,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "auberge"
+            },
+            "surface_index": 22,
+            "unit_number": 179155568,
+            "green_signals": [
+                {
+                    "count": 4800,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ],
+            "red_signals": [
+                {
+                    "count": 8151,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon"
+                    }
+                },
+                {
+                    "count": 5009,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon-orbit"
+                    }
+                },
+                {
+                    "count": 30727,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "magaera"
+            },
+            "surface_index": 30,
+            "unit_number": 179215432,
+            "green_signals": [
+                {
+                    "count": 8000,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "ezra"
+            },
+            "surface_index": 33,
+            "unit_number": 179139412,
+            "red_signals": [
+                {
+                    "count": 60,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon"
+                    }
+                },
+                {
+                    "count": 42,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon-orbit"
+                    }
+                },
+                {
+                    "count": 21319,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "ezra"
+            },
+            "surface_index": 44,
+            "unit_number": 179230011,
+            "green_signals": [
+                {
+                    "count": 8000,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=elevator",
+                "absent_signals": "ignore",
+                "name": "mara"
+            },
+            "surface_index": 54,
+            "unit_number": 181324495,
+            "green_signals": [
+                {
+                    "count": 8000,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-space-elevator-cable"
+                    }
+                }
+            ]
+        },
+        {
+            "settings": {
+                "tags": "type=ship",
+                "absent_signals": "ignore",
+                "name": "ghost"
+            },
+            "surface_index": 27,
+            "unit_number": 198877992,
+            "green_signals": [
+                {
+                    "count": 100,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-A"
+                    }
+                },
+                {
+                    "count": 200,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-speed"
+                    }
+                },
+                {
+                    "count": 1,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-anchor-using-right-clamp"
+                    }
+                },
+                {
+                    "count": 80085,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-anchor-to-left-clamp"
+                    }
+                }
+            ],
+            "red_signals": [
+                {
+                    "count": 588,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-A"
+                    }
+                },
+                {
+                    "count": 100,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-D"
+                    }
+                },
+                {
+                    "count": 68638,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-T"
+                    }
+                },
+                {
+                    "count": 64019,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-X"
+                    }
+                },
+                {
+                    "count": 64031,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-Y"
+                    }
+                },
+                {
+                    "count": 68638,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-Z"
+                    }
+                },
+                {
+                    "count": 49998,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-water"
+                    }
+                },
+                {
+                    "count": -2,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-distance"
+                    }
+                },
+                {
+                    "count": -2,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "signal-speed"
+                    }
+                },
+                {
+                    "count": 588,
+                    "signal": {
+                        "type": "virtual",
+                        "name": "se-moon-orbit"
+                    }
+                },
+                {
+                    "count": 199991,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "se-antimatter-stream"
+                    }
+                },
+                {
+                    "count": 49998,
+                    "signal": {
+                        "type": "fluid",
+                        "name": "steam"
+                    }
+                },
+                {
+                    "count": 142,
+                    "signal": {
+                        "type": "item",
+                        "name": "se-spaceship-console"
+                    }
+                }
+            ]
+        }
+    ]
+}
