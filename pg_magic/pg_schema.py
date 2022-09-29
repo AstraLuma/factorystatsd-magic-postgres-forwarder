@@ -19,6 +19,23 @@ def check_extensions(conn):
     # TODO: Forcibly close connection?
 
 
+def _has_func(conn, name):
+    with conn.cursor() as cur:
+        cur.execute("""
+SELECT
+    routine_name
+FROM 
+    information_schema.routines
+WHERE 
+    routine_type = 'FUNCTION'
+AND
+    routine_schema = 'public'
+AND
+    routine_name = %s
+""", [name])
+        return bool(list(fetch(cur)))
+
+
 def base_schema(conn):
     """
     Handles the concrete tables.
@@ -47,6 +64,9 @@ CREATE TABLE IF NOT EXISTS __raw__ (
 CREATE INDEX ON __raw__ (name);
 CREATE INDEX ON __raw__ (stamp);
 """)
+
+        if not _has_func(conn, 'game_epoch'):
+            set_epoch(conn, datetime.datetime.now())
 
 
 def set_epoch(conn, time: datetime.datetime):
@@ -89,7 +109,7 @@ order by schema_name,
 
 def _create_view(cur, name, kinds):
     columns = ', '.join(
-        f"__raw__.data -> '{kind}'"
+        f"(__raw__.data -> '{kind}')::INTEGER"
         for kind in kinds
     )
     cur.execute(f"""
@@ -100,8 +120,8 @@ SELECT
     __surface__.automation_id AS surface_id,
     __surface__.name AS surface_name,
     {columns}
-FROM __raw__ LEFT JOIN __surface__ ON __raw__.surface_id = __surface__.surface_id
-WHERE name = '{name}';
+FROM __raw__ LEFT JOIN __surface__ ON __raw__.surface_index = __surface__.surface_index
+WHERE __raw__.name = '{name}';
 """)
 
 
@@ -133,5 +153,5 @@ def check_view_names(conn, names, kinds):
     """
     with conn.cursor() as cur:
         views = _read_view_columns(cur)  # FIXME: Use a much simpler query.
-        for name in names - set(views.keys()):
+        for name in set(names) - set(views.keys()):
             _create_view(cur, name, kinds)
