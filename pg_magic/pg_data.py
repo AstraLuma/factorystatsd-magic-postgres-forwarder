@@ -1,9 +1,12 @@
 """
 Dealing with postgres in a data capacity.
 """
+import logging
 from typing import Iterable
 
 from .pg_conn import fetch
+
+LOG = logging.getLogger(__name__)
 
 
 def _flatten_signals(data: dict) -> dict:
@@ -14,11 +17,11 @@ def _flatten_signals(data: dict) -> dict:
 
     to
 
-        {"uranium-rounds-magazine": 102400}
+        {"uranium-rounds-magazine": "102400"}
     """
 
     return {
-        signal['signal']['name']: signal['count']
+        signal['signal']['name']: str(signal['count'])
         for signal in data
     }
 
@@ -28,12 +31,18 @@ def add_samples(conn, time: int, entities: list[dict]):
     Adds the given samples to the data set.
     """
     # FIXME: actual schema
-    with conn.cursor() as cur, cur.copy("COPY __raw__ (time, name, tags, surface_index, circuit, data) FROM STDIN") as copy:
+    with conn.cursor() as cur, cur.copy("COPY __raw__ (stamp, name, tags, surface_index, color, data) FROM STDIN") as copy:
         for ent in entities:
-            tags = {
-                left: right if eq else None 
-                for left, eq, right in map(str.partition, ent['settings']['tags'].split(','))
-            }
+            if ent['settings']['tags']:
+                tags = {
+                    left: right if eq else None 
+                    for left, eq, right in [
+                        tag.partition('=')
+                        for tag in ent['settings']['tags'].split(',')
+                    ]
+                }
+            else:
+                tags = {}
             if 'red_signals' in ent:
                 copy.write_row((
                     time,
@@ -45,6 +54,9 @@ def add_samples(conn, time: int, entities: list[dict]):
                 ))
 
             if 'green_signals' in ent:
+                # LOG.debug("entity %r", ent)
+                # LOG.debug("tags %r", tags)
+                # LOG.debug("signals %r", _flatten_signals(ent['green_signals']))
                 copy.write_row((
                     time,
                     ent['settings']['name'],
