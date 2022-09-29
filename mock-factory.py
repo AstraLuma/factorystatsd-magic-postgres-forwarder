@@ -15,8 +15,9 @@ meta = source / "factorystatsd-game-data.json"
 samples = source / "factorystatsd-samples.json"
 dest = Path(os.environ['SCRIPT_OUTPUT']).absolute()
 
-
+print("Emitting metadata", flush=True)
 shutil.copy(meta, dest)
 while True:
+    print("Emitting samples", flush=True)
     shutil.copy(samples, dest)
     time.sleep(1)
