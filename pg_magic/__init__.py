@@ -1,3 +1,4 @@
+import datetime
 import logging
 from pathlib import Path
 
@@ -6,7 +7,8 @@ import click
 from .incoming import read_factorio
 from .pg_conn import connection
 from .pg_schema import (
-    check_extensions, base_schema, check_view_columns, check_view_names
+    check_extensions, base_schema, check_view_columns, check_view_names,
+    set_epoch
 )
 from .pg_data import add_samples, read_names
 
@@ -55,6 +57,7 @@ def main(script_output, database_url):
 
                 case 'samples':
                     timestamp = blob['ticks'] / 60
+                    set_epoch(conn, datetime.datetime.now() - datetime.timedelta(seconds=timestamp))
                     LOG.info("Got samples @ %i time with %i entries", timestamp, len(blob['entities']))
                     add_samples(conn, timestamp, blob['entities'])
                     check_view_names(conn, read_names(conn), all_names)
