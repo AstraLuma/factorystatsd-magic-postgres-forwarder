@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 
 import click
@@ -8,6 +9,9 @@ from .pg_schema import (
     check_extensions, base_schema, check_view_columns, check_view_names
 )
 from .pg_data import add_samples, read_names
+
+
+LOG = logging.getLogger(__name__)
 
 
 def init(database_url):
@@ -26,6 +30,11 @@ def init(database_url):
 )
 @click.option('--database-url', envvar='DATABASE_URL')
 def main(script_output, database_url):
+    logging.basicConfig(level='DEBUG')
+
+    LOG.info("Forwarder Startup")
+
+    LOG.info("Initial database setup")
     init(database_url)
 
     with connection(database_url) as conn:
@@ -39,11 +48,13 @@ def main(script_output, database_url):
                         | set(blob['virtual_signal_names'])
                         | set(blob['fluid_names'])
                     )
+                    LOG.info("Got metadata with %i items", len(all_names))
                     # Reread
                     check_view_columns(conn, all_names)
                     check_view_names(conn, stat_names, all_names)
 
                 case 'samples':
                     timestamp = blob['ticks'] / 60
+                    LOG.info("Got samples @ %i time with %i entries", timestamp, len(blob['entities']))
                     add_samples(conn, timestamp, blob['entities'])
                     check_view_names(conn, read_names(conn), all_names)

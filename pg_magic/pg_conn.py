@@ -1,10 +1,13 @@
 import contextlib
+import logging
 from typing import Iterable
 
 import psycopg
 from psycopg.rows import namedtuple_row
 from psycopg.types import TypeInfo
 from psycopg.types.hstore import register_hstore
+
+LOG = logging.getLogger(__name__)
 
 
 def fetch(cur) -> Iterable:
@@ -24,7 +27,7 @@ def connection(connstr, **opts):
 
     Sets autocommit.
     """
-    print(f"Connecting to {connstr}")
+    LOG.info(f"Connecting to {connstr}")
     with psycopg.connect(connstr, autocommit=True, row_factory=namedtuple_row, **opts) as conn:
         # Register hstore, if available
         info = TypeInfo.fetch(conn, "hstore")
