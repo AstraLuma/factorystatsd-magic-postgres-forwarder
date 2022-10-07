@@ -3,6 +3,7 @@ Dealing with postgres in a schema capacity
 """
 import datetime
 
+from psycopg.sql import SQL, Identifier, Literal
 from psycopg.types import TypeInfo
 
 from .pg_conn import fetch
@@ -108,12 +109,18 @@ order by schema_name,
 
 
 def _create_view(cur, name, kinds):
-    columns = ', '.join(
-        f"(__raw__.data -> '{kind}')::INTEGER"
+    print(f"{kinds=}")
+    assert kinds
+    columns = SQL(', \n').join(
+        SQL("(__raw__.data -> {lkind})::INTEGER AS {ikind}").format(
+            lkind=Literal(kind), 
+            ikind=Identifier(kind),
+        )
         for kind in kinds
     )
-    cur.execute(f"""
-CREATE OR REPLACE VIEW "{name}" AS
+    print(f"{columns=}")
+    q = SQL("""
+CREATE OR REPLACE VIEW {iname} AS
 SELECT 
     (game_epoch() + __raw__.stamp)::timestamp AS time, 
     __raw__.tags AS tags,
@@ -121,8 +128,15 @@ SELECT
     __surface__.name AS surface_name,
     {columns}
 FROM __raw__ LEFT JOIN __surface__ ON __raw__.surface_index = __surface__.surface_index
-WHERE __raw__.name = '{name}';
-""")
+WHERE __raw__.name = {lname};
+""").format(
+        columns=columns,
+        iname=Identifier(name),
+        lname=Literal(name),
+    )
+    print(f"{q=}")
+    print(q.as_bytes(cur))
+    cur.execute(q)
 
 
 def check_view_columns(conn, kinds):
