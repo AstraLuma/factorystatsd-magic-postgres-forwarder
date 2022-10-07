@@ -3,8 +3,6 @@ version: "3.9"
 services:
   db:
     image: docker.io/library/postgres
-    volumes:
-      - db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=factorio
       - POSTGRES_USER=factory
@@ -37,5 +35,4 @@ services:
       - SCRIPT_OUTPUT=/var/run/script-output
 
 volumes:
-  db:
   scripts:
