@@ -1,6 +1,7 @@
 import datetime
 import logging
 from pathlib import Path
+import re
 
 import click
 
@@ -25,6 +26,21 @@ def init(database_url):
         base_schema(conn)
 
 
+NAME_EXCLUSIONS = [
+    re.compile(r"textplate-(small|large)-.*-.*"),
+]
+
+
+def _compile_names(blob: dict) -> set[str]:
+    return {
+        name
+        for name in set(blob['item_names'])
+        | set(blob['virtual_signal_names'])
+        | set(blob['fluid_names'])
+        if all(not pat.match(name) for pat in NAME_EXCLUSIONS)
+    }
+
+
 @click.command()
 @click.option(
     '--script-output', envvar='SCRIPT_OUTPUT', 
@@ -39,17 +55,15 @@ def main(script_output, database_url):
     LOG.info("Initial database setup")
     init(database_url)
 
+    all_names = None
+
     with connection(database_url) as conn:
         stat_names = set(read_names(conn))
         for which, blob in read_factorio(script_output):
             match which:
                 case 'meta':
                     # Check and update schema
-                    all_names = sorted(
-                        set(blob['item_names'])
-                        | set(blob['virtual_signal_names'])
-                        | set(blob['fluid_names'])
-                    )
+                    all_names = _compile_names(blob)
                     LOG.info("Got metadata with %i items", len(all_names))
                     # Reread
                     check_view_columns(conn, all_names)
@@ -60,4 +74,5 @@ def main(script_output, database_url):
                     set_epoch(conn, datetime.datetime.now() - datetime.timedelta(seconds=timestamp))
                     LOG.info("Got samples @ %i time with %i entries", timestamp, len(blob['entities']))
                     add_samples(conn, timestamp, blob['entities'])
-                    check_view_names(conn, read_names(conn), all_names)
+                    if all_names is not None:
+                        check_view_names(conn, read_names(conn), all_names)
