@@ -72,12 +72,12 @@ CREATE INDEX ON __raw__ (stamp);
 
 def set_epoch(conn, time: datetime.datetime):
     with conn.cursor() as cur:
-        cur.execute(f"""
+        cur.execute(SQL("""
 CREATE OR REPLACE FUNCTION game_epoch() RETURNS timestamp
 IMMUTABLE LANGUAGE SQL AS $$
-SELECT '{time.isoformat()}'::TIMESTAMP
+SELECT {}::TIMESTAMP
 $$
-""")
+""").format(Literal(time.isoformat())))
 
 
 def _read_view_columns(cur) -> dict:
@@ -109,7 +109,6 @@ order by schema_name,
 
 
 def _create_view(cur, name, kinds):
-    print(f"{kinds=}")
     assert kinds
     columns = SQL(', \n').join(
         SQL("(__raw__.data -> {lkind})::INTEGER AS {ikind}").format(
@@ -118,7 +117,6 @@ def _create_view(cur, name, kinds):
         )
         for kind in kinds
     )
-    print(f"{columns=}")
     q = SQL("""
 CREATE OR REPLACE VIEW {iname} AS
 SELECT 
@@ -134,8 +132,6 @@ WHERE __raw__.name = {lname};
         iname=Identifier(name),
         lname=Literal(name),
     )
-    print(f"{q=}")
-    print(q.as_bytes(cur))
     cur.execute(q)
 
 
@@ -153,9 +149,7 @@ def check_view_columns(conn, kinds):
             }
             if cols ^ kinds:
                 # The set of columns has differed
-                cur.execute(f"""
-DROP VIEW "{view}"
-""")
+                cur.execute(SQL("""DROP VIEW {}""").format(Identifier(view)))
                 _create_view(conn, view, kinds)
 
 
