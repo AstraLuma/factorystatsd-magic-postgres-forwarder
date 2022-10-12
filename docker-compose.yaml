@@ -14,6 +14,20 @@ services:
     image: docker.io/library/adminer
     ports:
       - 8080:8080
+    depends_on:
+      - db
+
+  grafana:
+    image: docker.io/grafana/grafana-oss
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana:/var/lib/grafana
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      # FIXME: Anonymous admin?
+      - GF_AUTH_BASIC_AUTHENTICATION_ENABLED=true
+
 
   forwarder:
     build: .
@@ -36,3 +50,4 @@ services:
 
 volumes:
   scripts:
+  grafana:
