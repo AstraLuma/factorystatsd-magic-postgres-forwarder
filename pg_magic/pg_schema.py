@@ -73,9 +73,9 @@ CREATE INDEX ON __raw__ (stamp);
 def set_epoch(conn, time: datetime.datetime):
     with conn.cursor() as cur:
         cur.execute(SQL("""
-CREATE OR REPLACE FUNCTION game_epoch() RETURNS timestamp
+CREATE OR REPLACE FUNCTION game_epoch() RETURNS timestamp with time zone
 IMMUTABLE LANGUAGE SQL AS $$
-SELECT {}::TIMESTAMP
+SELECT {}::timestamp with time zone
 $$
 """).format(Literal(time.isoformat())))
 
@@ -120,7 +120,7 @@ def _create_view(cur, name, kinds):
     q = SQL("""
 CREATE OR REPLACE VIEW {iname} AS
 SELECT 
-    (game_epoch() + __raw__.stamp)::timestamp AS time, 
+    (game_epoch() + __raw__.stamp) AS time, 
     __raw__.tags AS tags,
     __surface__.automation_id AS surface_id,
     __surface__.name AS surface_name,
