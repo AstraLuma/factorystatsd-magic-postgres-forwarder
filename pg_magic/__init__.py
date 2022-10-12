@@ -47,7 +47,10 @@ def _calculate_epoch(timestamp):
     Given "now" in game time (seconds since game start), calculate the epoch
     used to convert that to wall time.
     """
-    return datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(seconds=timestamp)
+    return (
+        datetime.datetime.now(datetime.timezone.utc)
+        - datetime.timedelta(seconds=timestamp)
+    )
 
 
 @click.command()
@@ -81,7 +84,10 @@ def main(script_output, database_url):
                 case 'samples':
                     timestamp = blob['ticks'] / 60
                     set_epoch(conn, _calculate_epoch(timestamp))
-                    LOG.info("Got samples @ %i time with %i entries", timestamp, len(blob['entities']))
+                    LOG.info(
+                        "Got samples @ %i time with %i entries", 
+                        timestamp, len(blob['entities'])
+                    )
                     add_samples(conn, timestamp, blob['entities'])
                     if all_names is not None:
                         check_view_names(conn, read_names(conn), all_names)

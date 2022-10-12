@@ -2,6 +2,7 @@
 Dealing with postgres in a schema capacity
 """
 import datetime
+from typing import Iterable
 
 from psycopg.sql import SQL, Identifier, Literal
 from psycopg.types import TypeInfo
@@ -94,7 +95,6 @@ SELECT t.table_schema as schema_name,
               on t.table_schema = c.table_schema 
               and t.table_name = c.table_name
 where table_type = 'VIEW' 
-      -- and t.table_schema not in ('information_schema', 'pg_catalog')
       and t.table_schema = 'public'
 order by schema_name,
          view_name;
@@ -106,6 +106,17 @@ order by schema_name,
             columns[key] = set()
         columns[key].add(row.column_name)
     return columns
+
+
+def _read_view_names(cur) -> Iterable[str]:
+    cur.execute(SQL("""
+SELECT t.table_schema as schema_name,
+       t.table_name as view_name
+    from information_schema.tables t
+where table_type = 'VIEW' 
+      and t.table_schema = 'public'
+"""))
+    yield from (row.view_name for row in fetch(cur))
 
 
 def _create_view(cur, name, kinds):
@@ -160,6 +171,6 @@ def check_view_names(conn, names, kinds):
     This does not check view contents, just existance.
     """
     with conn.cursor() as cur:
-        views = _read_view_columns(cur)  # FIXME: Use a much simpler query.
-        for name in set(names) - set(views.keys()):
+        views = _read_view_names(cur)  # FIXME: Use a much simpler query.
+        for name in set(names) - set(views):
             _create_view(cur, name, kinds)
