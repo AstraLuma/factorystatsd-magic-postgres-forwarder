@@ -4,6 +4,8 @@ Dealing with postgres in a data capacity.
 import logging
 from typing import Iterable
 
+from psycopg.sql import SQL
+
 from .pg_conn import fetch
 
 LOG = logging.getLogger(__name__)
@@ -31,7 +33,9 @@ def add_samples(conn, time: int, entities: list[dict]):
     Adds the given samples to the data set.
     """
     # FIXME: actual schema
-    with conn.cursor() as cur, cur.copy("COPY __raw__ (stamp, name, tags, surface_index, color, data) FROM STDIN") as copy:
+    with conn.cursor() as cur, cur.copy(
+        SQL("COPY __raw__ (stamp, name, tags, surface_index, color, data) FROM STDIN")
+    ) as copy:
         for ent in entities:
             if ent['settings']['tags']:
                 tags = {
@@ -72,6 +76,6 @@ def read_names(conn) -> Iterable[str]:
     Reads all existing stat names.
     """
     with conn.cursor() as cur:
-        cur.execute("SELECT DISTINCT name FROM __raw__")
+        cur.execute(SQL("SELECT DISTINCT name FROM __raw__"))
         for row in fetch(cur):
             yield row.name

@@ -16,13 +16,13 @@ def check_extensions(conn):
     Might make the connection object unusable.
     """
     with conn.cursor() as cur:
-        cur.execute("CREATE EXTENSION IF NOT EXISTS hstore CASCADE")
+        cur.execute(SQL("CREATE EXTENSION IF NOT EXISTS hstore CASCADE"))
     # TODO: Forcibly close connection?
 
 
 def _has_func(conn, name):
     with conn.cursor() as cur:
-        cur.execute("""
+        cur.execute(SQL("""
 SELECT
     routine_name
 FROM 
@@ -33,7 +33,7 @@ AND
     routine_schema = 'public'
 AND
     routine_name = %s
-""", [name])
+"""), [name])
         return bool(list(fetch(cur)))
 
 
@@ -43,10 +43,10 @@ def base_schema(conn):
     """
     with conn.cursor() as cur:
         if not TypeInfo.fetch(conn, "CIRCUIT_COLOR"):
-            cur.execute("""CREATE TYPE CIRCUIT_COLOR AS ENUM ('red', 'green');""")
+            cur.execute(SQL("""CREATE TYPE CIRCUIT_COLOR AS ENUM ('red', 'green');"""))
 
         # TODO: Handle upgrades and shit
-        cur.execute("""
+        cur.execute(SQL("""
 CREATE TABLE IF NOT EXISTS __surface__ (
     surface_index INTEGER NOT NULL PRIMARY KEY,
     automation_id INTEGER NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS __raw__ (
 
 CREATE INDEX ON __raw__ (name);
 CREATE INDEX ON __raw__ (stamp);
-""")
+"""))
 
         if not _has_func(conn, 'game_epoch'):
             set_epoch(conn, datetime.datetime.now())
@@ -81,7 +81,7 @@ $$
 
 
 def _read_view_columns(cur) -> dict:
-    cur.execute("""
+    cur.execute(SQL("""
 SELECT t.table_schema as schema_name,
        t.table_name as view_name,
        c.column_name,
@@ -98,7 +98,7 @@ where table_type = 'VIEW'
       and t.table_schema = 'public'
 order by schema_name,
          view_name;
-""")
+"""))
     columns = {}
     for row in fetch(cur):
         key = row.view_name
