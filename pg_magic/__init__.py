@@ -38,6 +38,7 @@ def _compile_names(blob: dict) -> set[str]:
         | set(blob['virtual_signal_names'])
         | set(blob['fluid_names'])
         if all(not pat.match(name) for pat in NAME_EXCLUSIONS)
+        if len(name) <= 63  # PostgreSQL column name limit
     }
 
 
