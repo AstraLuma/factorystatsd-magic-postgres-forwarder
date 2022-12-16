@@ -6,7 +6,7 @@ authors = ["Jamie Bliss <jamie@ivyleav.es>"]
 license = "FAFOL"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.7"
 psycopg = {extras = ["binary"], version = "^3.1.1"}
 click = "^8.1.3"
 

@@ -2,7 +2,7 @@
 Dealing with postgres in a data capacity.
 """
 import logging
-from typing import Iterable
+from typing import Iterable, List
 
 from psycopg.sql import SQL
 
@@ -28,7 +28,7 @@ def _flatten_signals(data: dict) -> dict:
     }
 
 
-def add_samples(conn, time: int, entities: list[dict]):
+def add_samples(conn, time: int, entities: List[dict]):
     """
     Adds the given samples to the data set.
     """

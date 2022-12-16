@@ -2,6 +2,7 @@ import datetime
 import logging
 from pathlib import Path
 import re
+from typing import Set
 
 import click
 
@@ -31,7 +32,7 @@ NAME_EXCLUSIONS = [
 ]
 
 
-def _compile_names(blob: dict) -> set[str]:
+def _compile_names(blob: dict) -> Set[str]:
     return {
         name
         for name in set(blob['item_names'])
@@ -72,22 +73,21 @@ def main(script_output, database_url):
     with connection(database_url) as conn:
         stat_names = set(read_names(conn))
         for which, blob in read_factorio(script_output):
-            match which:
-                case 'meta':
-                    # Check and update schema
-                    all_names = _compile_names(blob)
-                    LOG.info("Got metadata with %i items", len(all_names))
-                    # Reread
-                    check_view_columns(conn, all_names)
-                    check_view_names(conn, stat_names, all_names)
+            if which == 'meta':
+                # Check and update schema
+                all_names = _compile_names(blob)
+                LOG.info("Got metadata with %i items", len(all_names))
+                # Reread
+                check_view_columns(conn, all_names)
+                check_view_names(conn, stat_names, all_names)
 
-                case 'samples':
-                    timestamp = blob['ticks'] / 60
-                    set_epoch(conn, _calculate_epoch(timestamp))
-                    LOG.info(
-                        "Got samples @ %i time with %i entries", 
-                        timestamp, len(blob['entities'])
-                    )
-                    add_samples(conn, timestamp, blob['entities'])
-                    if all_names is not None:
-                        check_view_names(conn, read_names(conn), all_names)
+            elif which == 'samples':
+                timestamp = blob['ticks'] / 60
+                set_epoch(conn, _calculate_epoch(timestamp))
+                LOG.info(
+                    "Got samples @ %i time with %i entries", 
+                    timestamp, len(blob['entities'])
+                )
+                add_samples(conn, timestamp, blob['entities'])
+                if all_names is not None:
+                    check_view_names(conn, read_names(conn), all_names)

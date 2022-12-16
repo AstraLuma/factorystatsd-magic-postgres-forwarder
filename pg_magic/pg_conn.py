@@ -14,8 +14,10 @@ def fetch(cur) -> Iterable:
     """
     Performs batched fetching.
     """
-    while rows := cur.fetchmany():
+    rows = cur.fetchmany()
+    while rows:
         yield from rows
+        rows = cur.fetchmany()
 
 
 @contextlib.contextmanager

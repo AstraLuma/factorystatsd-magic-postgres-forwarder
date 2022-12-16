@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3 as builder
+FROM docker.io/library/python:3.7 as builder
 # Install poetry
 RUN pip install poetry
 
@@ -17,7 +17,7 @@ RUN cp dist/* /tmp
 
 
 # This is the real container
-FROM docker.io/library/python:3-slim
+FROM docker.io/library/python:3.7-slim
 COPY --from=builder /tmp /tmp
 RUN pip install --no-cache-dir --disable-pip-version-check /tmp/*.whl
 

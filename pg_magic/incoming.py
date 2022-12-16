@@ -5,7 +5,7 @@ import json
 import logging
 from pathlib import Path
 import time
-from typing import Iterable
+from typing import Iterable, Tuple
 
 __all__ = ('read_factorio',)
 
@@ -18,7 +18,7 @@ def _read_and_nuke(file: Path):
     return data
 
 
-def read_factorio(script_output: Path) -> Iterable[tuple[str, dict]]:
+def read_factorio(script_output: Path) -> Iterable[Tuple[str, dict]]:
     """
     Reads the data from the in-game factorystatsd mod.
 
