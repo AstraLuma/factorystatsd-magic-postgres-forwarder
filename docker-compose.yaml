@@ -18,7 +18,7 @@ services:
       - db
 
   grafana:
-    image: docker.io/grafana/grafana-oss
+    image: docker.io/grafana/grafana-oss:8.5.15  # Grafana 9 doesn't like views
     ports:
       - 3000:3000
     volumes:
