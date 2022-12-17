@@ -1,4 +1,5 @@
 import datetime
+import functools
 import logging
 from pathlib import Path
 import re
@@ -13,7 +14,7 @@ from .pg_schema import (
     check_extensions, base_schema, check_view_columns, check_view_names,
     set_epoch
 )
-from .pg_data import add_samples, read_names
+from .pg_data import add_samples, read_names, read_stats
 
 
 LOG = logging.getLogger(__name__)
@@ -58,6 +59,10 @@ def _calculate_epoch(timestamp):
     )
 
 
+def _all_stats_keys(conn):
+    return functools.reduce(set.union, read_stats(conn).values(), set())
+
+
 @click.command()
 @click.option(
     '--script-output', envvar='SCRIPT_OUTPUT', 
@@ -75,14 +80,14 @@ def main(script_output, database_url):
     all_names = None
 
     with connection(database_url) as conn:
-        stat_names = set(read_names(conn))
         for which, blob in read_factorio(script_output):
             if which == 'meta':
                 # Check and update schema
-                all_names = _compile_names(blob)
+                all_names = _all_stats_keys(conn)
                 LOG.info("Got metadata with %i items", len(all_names))
                 # Reread
                 check_view_columns(conn, all_names)
+                stat_names = set(read_names(conn))
                 check_view_names(conn, stat_names, all_names)
 
             elif which == 'samples':
@@ -93,5 +98,7 @@ def main(script_output, database_url):
                     timestamp, len(blob['entities'])
                 )
                 add_samples(conn, timestamp, blob['entities'])
-                if all_names is not None:
+                all_names = _all_stats_keys(conn)
+                if all_names:
+                    check_view_columns(conn, all_names)
                     check_view_names(conn, read_names(conn), all_names)

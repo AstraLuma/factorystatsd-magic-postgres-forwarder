@@ -2,7 +2,7 @@
 Dealing with postgres in a data capacity.
 """
 import logging
-from typing import Iterable, List
+from typing import Iterable, List, Dict, Set
 
 from psycopg.sql import SQL
 
@@ -79,3 +79,18 @@ def read_names(conn) -> Iterable[str]:
         cur.execute(SQL("SELECT DISTINCT name FROM __raw__"))
         for row in fetch(cur):
             yield row.name
+
+
+def read_stats(conn) -> Dict[str, Set[str]]:
+    """
+    Reads all of the keys currently in the data, groupped by stat name
+    """
+    stats = {}
+    with conn.cursor() as cur:
+        cur.execute(SQL("SELECT DISTINCT name, skeys(data) AS key FROM __raw__"))
+        for row in fetch(cur):
+            if row.name not in stats:
+                stats[row.name] = set()
+            stats[row.name].add(row.key)
+
+    return stats
