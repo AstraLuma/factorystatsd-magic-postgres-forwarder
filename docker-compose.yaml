@@ -2,7 +2,7 @@ version: "3.9"
    
 services:
   db:
-    image: docker.io/library/postgres
+    image: docker.io/library/postgres:11
     environment:
       - POSTGRES_DB=factorio
       - POSTGRES_USER=factory
@@ -34,7 +34,7 @@ services:
     volumes:
       - scripts:/var/run/script-output
     environment:
-      - DATABASE_URL=postgresql://factory:thesciencemustflow@db/factorio?target_session_attrs=any&application_name=forwarder
+      - DATABASE_URL=postgresql://factory:thesciencemustflow@db/factorio?application_name=forwarder
       - SCRIPT_OUTPUT=/var/run/script-output
     depends_on:
       - db
