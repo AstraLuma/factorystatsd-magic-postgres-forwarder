@@ -5,6 +5,7 @@ import re
 from typing import Set
 
 import click
+import click_log
 
 from .incoming import read_factorio
 from .pg_conn import connection
@@ -16,6 +17,8 @@ from .pg_data import add_samples, read_names
 
 
 LOG = logging.getLogger(__name__)
+ROOTLOG = logging.getLogger()
+click_log.basic_config(ROOTLOG)
 
 
 def init(database_url):
@@ -60,8 +63,8 @@ def _calculate_epoch(timestamp):
     type=click.Path(file_okay=False, readable=True, path_type=Path),
 )
 @click.option('--database-url', envvar='DATABASE_URL')
+@click_log.simple_verbosity_option(ROOTLOG)
 def main(script_output, database_url):
-    logging.basicConfig(level='DEBUG')
 
     LOG.info("Forwarder Startup")
 
