@@ -65,6 +65,9 @@ CREATE TABLE IF NOT EXISTS __raw__ (
 
 CREATE INDEX ON __raw__ (name);
 CREATE INDEX ON __raw__ (stamp);
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO PUBLIC;
+ALTER DEFAULT PRIVILEGES GRANT SELECT ON TABLES TO PUBLIC;
 """))
 
         if not _has_func(conn, 'game_epoch'):
