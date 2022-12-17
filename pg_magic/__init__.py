@@ -32,6 +32,7 @@ def init(database_url):
 
 NAME_EXCLUSIONS = [
     re.compile(r"textplate-(small|large)-.*-.*"),
+    re.compile(r"waterGhost-.*"),
 ]
 
 
